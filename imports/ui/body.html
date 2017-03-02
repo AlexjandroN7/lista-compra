@@ -1,0 +1,35 @@
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Compra</h1>
+
+            <label class="hide-completed">
+
+  <input type="checkbox" />
+
+  Esconder productos cogidos
+
+</label> {{> loginButtons}} {{#if currentUser}}
+            <form class="new-product">
+                <input  type="number" name="numero" placeholder="Cantidad" style="width: 50%;" />
+                <input type="text" name="text" placeholder="Escribe para añadir productos" />
+                <select name="sitio">
+				<option value="fruteria">Frutas</option>
+				<option value="congelados">Congelados</option>
+				<option value="carnes">Carnes</option>
+        <option value="bebidas">Bebidas</option>
+        <option value="postres">Postres</option>
+			</select>
+                <input type="submit" value="Añadir producto">
+            </form>
+            {{/if}}
+
+
+        </header>
+
+        <ul>
+            {{#each products}} {{> product}} {{/each}}
+        </ul>
+    </div>
+</body>
