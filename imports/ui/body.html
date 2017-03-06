@@ -13,15 +13,41 @@
 </label> {{> loginButtons}} {{#if currentUser}}
             <form class="new-product">
                 <input  type="number" name="numero" placeholder="0" style="width: 20%;" />
-                <input type="text" name="text" placeholder="Escribe para añadir productos" />
+                <input type="text" name="text" style="width: 59%;" placeholder="Escribe para añadir productos" />
                 <select name="sitio">
-				<option value="fruteria">Frutas</option>
-				<option value="congelados">Congelados</option>
-				<option value="carnes">Carnes</option>
-        <option value="bebidas">Bebidas</option>
-        <option value="postres">Postres</option>
+				<option value="Fruteria">Frutas</option>
+				<option value="Congelados">Congelados</option>
+				<option value="Carnes">Carnes</option>
+        <option value="Bebidas">Bebidas</option>
+        <option value="Postres">Postres</option>
 			</select>
-                <input type="submit" value="Añadir producto" style="margin-left:20%;">
+      <div class="filtro">
+        <label class="show-frutas">
+          <input name="PlaceFilter" type="radio">
+          Frutas
+        </label>
+        <label class="show-congelados">
+          <input name="PlaceFilter" type="radio">
+          Congelados
+        </label>
+        <label class="show-carnes">
+          <input name="PlaceFilter" type="radio">
+          Carnes
+        </label>
+        <label class="show-bebidas">
+          <input name="PlaceFilter" type="radio">
+          Bebidas
+        </label>
+        <label class="show-postres">
+          <input name="PlaceFilter" type="radio">
+          Postres
+        </label>
+        <label class="show-all">
+          <input name="PlaceFilter" type="radio">
+          Todo
+        </label>
+      </div>
+                <input type="submit" value="Añadir producto" style="margin-left: 35%;">
             </form>
             {{/if}}
 

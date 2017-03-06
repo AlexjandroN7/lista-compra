@@ -20,16 +20,54 @@ Template.body.helpers({
 
 if (instance.state.get('hideCompleted')) {
 
-  // If hide completed is checked, filter tasks
-
-  return Products.find({ checked: { $ne: true } }, { sort: { createdAt: -1 } });
-
+  if(instance.state.get('show-frutas')) {
+    return Products.find({$and: [{ checked:{$ne: true}, sitio:{ $eq:"Fruteria"}}]}, {sort: {checked: 1, createdAt: -1}});
+  }
+  else if(instance.state.get('show-congelados')) {
+    return Products.find({$and: [{checked: {$ne: true}, sitio: {$eq:"Congelados"}}]}, {sort: {checked:1, createdAt: -1}});
+  }
+  else if(instance.state.get('show-carnes')) {
+    return Products.find({$and: [{checked: {$ne: true}, sitio: {$eq:"Carnes"}}]}, {sort: {checked:1, createdAt: -1}});
+  }
+  else if(instance.state.get('show-bebidas')){
+    return Products.find({$and: [{checked: {$ne: true}, sitio: {$eq:"Bebidas"}}]}, {sort: {checked:1, createdAt: -1}});
+  }
+  else if(instance.state.get('show-postres')){
+    return Products.find({$and: [{checked: {$ne: true}, sitio: {$eq:"Postres"}}]}, {sort:{checked:1, createdAt: -1}});
+  }
+  else if(instance.state.get('show-all')){
+  return Products.find({ checked: { $ne: true }}, { sort: { checked: 1 , createdAt: -1} });
+  }
+  else{
+  return Products.find({ checked: { $ne: true } }, { sort: { checked:1, createdAt: -1 } });
+  }
 }
+  else {
+    if(instance.state.get('show-frutas')) {
+      return Products.find({sitio: {$eq:"Fruteria"}}, {sort:{checked:1, createdAt: -1}});
+    };
+    if(instance.state.get('show-congelados')) {
+      return Products.find({sitio: {$eq:"Congelados"}}, {sort:{checked:1, createdAt: -1}});
+    };
+    if(instance.state.get('show-carnes')){
+      return Products.find({sitio: {$eq:"Carnes"}}, {sort: {checked: 1, createdAt: -1}});
+    };
+    if(instance.state.get('show-bebidas')){
+      return Products.find({sitio: {$eq:"Bebidas"}}, {sort: {checked: 1, createdAt: -1}});
+    };
+    if(instance.state.get('show-postres')){
+      return Products.find({sitio: {$eq:"Postres"}}, {sort: {checked: 1, createdAt: -1}});
+    };
+    if(instance.state.get('show-all')){
+      return Products.find({}, {sort: {checked: 1, createdAt: -1}});
+    };
+
 
 // Otherwise, return all of the tasks
 
 return Products.find({}, { sort: { createdAt: -1 } });
 
+}
 },
 
 
@@ -72,6 +110,54 @@ Template.body.events({
 
   instance.state.set('hideCompleted', event.target.checked);
 
+},
+'change .show-all input'(event, instance) {
+instance.state.set('show-all', event.target.checked);
+instance.state.set('show-frutas', false);
+instance.state.set('show-congelados', false);
+instance.state.set('show-carnes', false);
+instance.state.set('show-bebidas', false);
+instance.state.set('show-postres', false);
+},
+'change .show-frutas input'(event, instance) {
+instance.state.set('show-all', false);
+instance.state.set('show-frutas', event.target.checked);
+instance.state.set('show-congelados', false);
+instance.state.set('show-carnes', false);
+instance.state.set('show-bebidas', false);
+instance.state.set('show-postres', false);
+},
+'change .show-congelados input'(event, instance) {
+instance.state.set('show-all', false);
+instance.state.set('show-frutas', false);
+instance.state.set('show-congelados', event.target.checked);
+instance.state.set('show-carnes', false);
+instance.state.set('show-bebidas', false);
+instance.state.set('show-postres', false);
+},
+'change .show-carnes input'(event, instance) {
+instance.state.set('show-all', false);
+instance.state.set('show-frutas', false);
+instance.state.set('show-congelados', false);
+instance.state.set('show-carnes', event.target.checked);
+instance.state.set('show-bebidas', false);
+instance.state.set('show-postres', false);
+},
+'change .show-bebidas input'(event, instance) {
+instance.state.set('show-all', false);
+instance.state.set('show-frutas', false);
+instance.state.set('show-congelados', false);
+instance.state.set('show-carnes', false);
+instance.state.set('show-bebidas', event.target.checked);
+instance.state.set('show-postres', false);
+},
+'change .show-postres input'(event, instance) {
+instance.state.set('show-all', false);
+instance.state.set('show-frutas', false);
+instance.state.set('show-congelados', false);
+instance.state.set('show-carnes', false);
+instance.state.set('show-bebidas', false);
+instance.state.set('show-postres', event.target.checked);
 },
 
 });
