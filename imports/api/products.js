@@ -22,7 +22,7 @@ Meteor.methods({
   'products.insert'(text, numero, sitio) {
 
     check(text, String);
-    
+
 
 
 
@@ -59,6 +59,7 @@ Meteor.methods({
     const product = Products.findOne(taskId);
     if (product.owner != this.userId) {
 
+      alert("No esta autorizado para borrar este producto");
       throw new Meteor.Error('not-authorized');
 
     }
