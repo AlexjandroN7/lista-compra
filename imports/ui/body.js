@@ -104,7 +104,7 @@ Template.body.events({
     // Clear form
 
     target.text.value = '';
-
+    target.numero.value = 0;
   },
   'change .hide-completed input'(event, instance) {
 
